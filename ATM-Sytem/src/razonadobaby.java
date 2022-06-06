@@ -14,7 +14,7 @@ public class razonadobaby {
 			
 		 total = num1 + num2;
 		 
-		 System.out.print(num1 + "+" + num2 + "=" + total + ", fuck you");	
+		 System.out.print(num1 + "+" + num2 + "=" + total + ", fuck you weirdo");	
 	}
 
 }
