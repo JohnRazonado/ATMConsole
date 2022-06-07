@@ -1,21 +1,21 @@
-# #Temp removals
-# /.metadata/
- .gitignore
-# .settings/
-# bin/
-# tmp/
-# .metadata
-# .classpath
-# .project
-# *.tmp
-# *.bak
-# *.swp
-# *~.nib
-# local.properties
-# .loadpath
-# .factorypath
+#Temp removals
+/.metadata/
+.gitignore
+.settings/
+bin/
+tmp/
+.metadata
+.classpath
+.project
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.factorypath
 
-# # Package Files #
-# *.jar
-# *.war
-# *.ear
+# Package Files #
+*.jar
+*.war
+*.ear
