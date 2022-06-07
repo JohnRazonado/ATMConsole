@@ -1,6 +1,9 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.NumberFormat;
+import java.util.Currency;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 
@@ -36,7 +39,13 @@ public class atmSystem {
 		 
 		 
 		 BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-		 boolean transact = true;
+		 boolean transact = true; // the main loop bool
+		 
+		 //This part sets up the peso format
+		 NumberFormat peso = NumberFormat.getInstance();
+		 peso.setMaximumFractionDigits(2);
+		 peso.setCurrency(Currency.getInstance("PHP"));
+		 
 		 
 		 // This clear the CMD console but don't work on different IDEs
 		 // Remove if irresponsive
@@ -65,27 +74,27 @@ public class atmSystem {
 					System.out.print("Select Account:\n\t1: Savings\n\t2: Checking\n Enter selection: ");
 					select = Integer.parseInt(input.readLine());
 					if(select == 1) { // Savings Account
-						System.out.print("\n\nCurrent Balance " + savBal + "\n"
+						System.out.print("\n\nCurrent Balance " + peso.format(savBal) + "\n"
 								+ "Enter the amount to withdraw:");
 						double withdraw = Double.parseDouble(input.readLine());
 						double tempHolder = savBal;
 						tempHolder -= withdraw;
 						if(tempHolder > 0) {
 							savBal -= withdraw;
-							System.out.println("\nNew Savings Balance: " + savBal);
+							System.out.println("\nNew Savings Balance: " + peso.format(savBal));
 						} else {
 							System.err.println("\nInsufficient Balance");
 						}
 				
 					} else if (select == 2) { // Checking Account
-						System.out.print("\n\nCurrent Balance " + checkBal + "\n"
+						System.out.print("\n\nCurrent Balance " + peso.format(checkBal) + "\n"
 								+ "Enter the amount to withdraw:");
 						double withdraw = Double.parseDouble(input.readLine());
 						double tempHolder = checkBal;
 						tempHolder -= withdraw;
 						if(tempHolder > 0) {
 							checkBal -= withdraw;
-							System.out.println("\nNew Checking Balance: " + checkBal);
+							System.out.println("\nNew Checking Balance: " + peso.format(checkBal));
 						} else {
 							System.err.println("\nInsufficient Balance");
 						}
@@ -101,17 +110,17 @@ public class atmSystem {
 					System.out.print("\nSelect Account:\n\t1: Savings\n\t2: Checking\n Enter selection: ");
 					select = Integer.parseInt(input.readLine());
 					if (select == 1) {
-						System.out.print("\n\nCurrent Balance " + savBal + "\n"
+						System.out.print("\n\nCurrent Balance " + peso.format(savBal) + "\n"
 								+ "Enter the amount to deposit: ");
 						double deposit = Double.parseDouble(input.readLine());
 						savBal += deposit;
-						System.out.println("New Savings Balance: " + savBal);
+						System.out.println("New Savings Balance: " + peso.format(savBal));
 					} else if (select == 2) {
-						System.out.print("\n\nCurrent Balance " + checkBal + "\n"
+						System.out.print("\n\nCurrent Balance " + peso.format(checkBal) + "\n"
 								+ "Enter the amount to deposit: ");
 						double deposit = Double.parseDouble(input.readLine());
 						checkBal += deposit;
-						System.out.println("New Checking Balance: " + checkBal);
+						System.out.println("New Checking Balance: " + peso.format(checkBal));
 					} else {
 						System.err.println("\nChoose only based on the selection and its corresponding number");
 					}
@@ -138,11 +147,11 @@ public class atmSystem {
 					System.out.print("\nSelect Account:\n\t1: Savings\n\t2: Checking\n\t3: Both Account\n Enter selection: ");
 					select = Integer.parseInt(input.readLine());
 					if (select == 1) {
-						System.out.println("\n\nCurrent Balance " + savBal);
+						System.out.println("\n\nCurrent Balance " + peso.format(savBal));
 					} else if (select == 2) {
-						System.out.println("\n\nCurrent Balance " + checkBal);
+						System.out.println("\n\nCurrent Balance " + peso.format(checkBal));
 					} else if(select == 3) {
-						System.out.println("\n\nSavings Balance: " + savBal + "\nChecking Balance: " + checkBal);
+						System.out.println("\n\nSavings Balance: " + peso.format(savBal) + "\nChecking Balance: " + peso.format(checkBal));
 					} else {
 						System.err.println("\nChoose only based on the selection and its corresponding number");
 					}
