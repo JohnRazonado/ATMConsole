@@ -90,7 +90,7 @@ public class atmSystem {
 							System.err.println("\nInsufficient Balance");
 						}
 					} else {
-						System.err.println("Something's wrong sorry about that");
+						System.err.println("\nChoose only based on the selection and its corresponding number");
 					}
 					break;
 				}
@@ -113,7 +113,7 @@ public class atmSystem {
 						checkBal += deposit;
 						System.out.println("New Checking Balance: " + checkBal);
 					} else {
-						System.err.println("Something's wrong sorry about that");
+						System.err.println("\nChoose only based on the selection and its corresponding number");
 					}
 					break;
 				}
@@ -128,7 +128,7 @@ public class atmSystem {
 					} else if (select == 2) {
 						
 					} else {
-						System.err.println("Something's wrong sorry about that");
+						System.err.println("\nChoose only based on the selection and its corresponding number");
 					}
 					
 					break;
@@ -144,7 +144,7 @@ public class atmSystem {
 					} else if(select == 3) {
 						System.out.println("\n\nSavings Balance: " + savBal + "\nChecking Balance: " + checkBal);
 					} else {
-						System.err.println("Something's wrong sorry about that");
+						System.err.println("\nChoose only based on the selection and its corresponding number");
 					}
 					break;
 				}
