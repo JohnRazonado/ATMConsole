@@ -44,12 +44,12 @@ public class atmSystem {
 		 System.out.flush();  
 		 
 		 while (transact) {
-			 System.out.print("\n\nATM Main Menu:\n\n"
-					 + "1: Withdraw Money \n"
-					 + "2: Deposit Money \n"
-					 + "3: Transfer Funds \n"
-					 + "4: Check Account Balance\n"
-					 + "5: End Session\n \n"
+			 System.out.print("\n\nATM Main Menu:\n"
+					 + "\t1: Withdraw Money \n"
+					 + "\t2: Deposit Money \n"
+					 + "\t3: Transfer Funds \n"
+					 + "\t4: Check Account Balance\n"
+					 + "\t5: End Session\n \n"
 					 + "Enter selection: ");
 			 int select = Integer.parseInt(input.readLine());
 			 
