@@ -42,9 +42,9 @@ public class atmSystem {
 		 boolean transact = true; // the main loop bool
 		 
 		 //This part sets up the peso format
-		 NumberFormat peso = NumberFormat.getInstance();
+		 NumberFormat peso = NumberFormat.getCurrencyInstance(new Locale("phi" ,"PH"));
 		 peso.setMaximumFractionDigits(2);
-		 peso.setCurrency(Currency.getInstance("PHP"));
+//		 peso.setCurrency(Currency.getInstance("PHP"));
 		 
 		 
 		 // This clear the CMD console but don't work on different IDEs
@@ -75,26 +75,26 @@ public class atmSystem {
 					select = Integer.parseInt(input.readLine());
 					if(select == 1) { // Savings Account
 						System.out.print("\n\nCurrent Balance " + peso.format(savBal) + "\n"
-								+ "Enter the amount to withdraw:");
+								+ "Enter the amount to withdraw: ");
 						double withdraw = Double.parseDouble(input.readLine());
 						double tempHolder = savBal;
 						tempHolder -= withdraw;
 						if(tempHolder > 0) {
 							savBal -= withdraw;
-							System.out.println("\nNew Savings Balance: " + peso.format(savBal));
+							System.out.println("\n\nNew Savings Balance: " + peso.format(savBal));
 						} else {
 							System.err.println("\nInsufficient Balance");
 						}
 				
 					} else if (select == 2) { // Checking Account
 						System.out.print("\n\nCurrent Balance " + peso.format(checkBal) + "\n"
-								+ "Enter the amount to withdraw:");
+								+ "Enter the amount to withdraw: ");
 						double withdraw = Double.parseDouble(input.readLine());
 						double tempHolder = checkBal;
 						tempHolder -= withdraw;
 						if(tempHolder > 0) {
 							checkBal -= withdraw;
-							System.out.println("\nNew Checking Balance: " + peso.format(checkBal));
+							System.out.println("\n\nNew Checking Balance: " + peso.format(checkBal));
 						} else {
 							System.err.println("\nInsufficient Balance");
 						}
@@ -114,13 +114,13 @@ public class atmSystem {
 								+ "Enter the amount to deposit: ");
 						double deposit = Double.parseDouble(input.readLine());
 						savBal += deposit;
-						System.out.println("New Savings Balance: " + peso.format(savBal));
+						System.out.println("\n\nNew Savings Balance: " + peso.format(savBal));
 					} else if (select == 2) {
 						System.out.print("\n\nCurrent Balance " + peso.format(checkBal) + "\n"
 								+ "Enter the amount to deposit: ");
 						double deposit = Double.parseDouble(input.readLine());
 						checkBal += deposit;
-						System.out.println("New Checking Balance: " + peso.format(checkBal));
+						System.out.println("\n\nNew Checking Balance: " + peso.format(checkBal));
 					} else {
 						System.err.println("\nChoose only based on the selection and its corresponding number");
 					}
