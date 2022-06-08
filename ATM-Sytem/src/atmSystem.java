@@ -29,11 +29,13 @@ public class atmSystem {
 		 
 		 // There could probably a built-in account of some sort here.
 		 //   1: Savings  and  2: Checking	account
+			int min=1;
+			int max=5000;
 	 
-		 double savBal = 0.00; 		// Savings account balance
+		 double savBal = (int)Math.floor(Math.random()*(max-min+1)+min);		// Savings account balance
 		 double savRate = 0.25;		// Savings interest rate 
 		 
-		 double checkBal = 0.00; 	// Checking account balance
+		 double checkBal = (int)Math.floor(Math.random()*(max-min+1)+min);	// Checking account balance
 		 double checkRate = 0.00; 	// Checking interest rate
 		 // The interest rate is based on the common interest rate of Philippine Banks
 		 
@@ -42,7 +44,7 @@ public class atmSystem {
 		 boolean transact = true; // the main loop bool
 		 
 		 //This part sets up the peso format
-		 NumberFormat peso = NumberFormat.getCurrencyInstance(new Locale("phi" ,"PH"));
+		 NumberFormat peso = NumberFormat.getCurrencyInstance(new Locale("en", "PH"));
 		 peso.setMaximumFractionDigits(2);
 //		 peso.setCurrency(Currency.getInstance("PHP"));
 		 
@@ -74,16 +76,16 @@ public class atmSystem {
 					System.out.print("Select Account:\n\t1: Savings\n\t2: Checking\n Enter selection: ");
 					select = Integer.parseInt(input.readLine());
 					if(select == 1) { // Savings Account
-						System.out.print("\n\nCurrent Balance " + peso.format(savBal) + "\n"
+						System.out.print("Current Balance " + peso.format(savBal) + "\n"
 								+ "Enter the amount to withdraw: ");
 						double withdraw = Double.parseDouble(input.readLine());
 						double tempHolder = savBal;
 						tempHolder -= withdraw;
 						if(tempHolder > 0) {
 							savBal -= withdraw;
-							System.out.println("\n\nNew Savings Balance: " + peso.format(savBal));
+							System.out.println("\n\n New Savings Balance: " + peso.format(savBal));
 						} else {
-							System.err.println("\nInsufficient Balance");
+							System.err.println("\n Insufficient Balance");
 						}
 				
 					} else if (select == 2) { // Checking Account
