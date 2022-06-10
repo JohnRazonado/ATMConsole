@@ -44,7 +44,7 @@ public class atmSystem {
 		 boolean transact = true; // the main loop bool
 		 
 		 //This part sets up the peso format
-		 NumberFormat peso = NumberFormat.getCurrencyInstance(new Locale("en", "PH"));
+		 NumberFormat peso = NumberFormat.getCurrencyInstance(new Locale("608", "PH"));
 		 peso.setMaximumFractionDigits(2);
 //		 peso.setCurrency(Currency.getInstance("PHP"));
 		 
@@ -131,13 +131,38 @@ public class atmSystem {
 				
 				
 				case 3: { //Transfer from Savings to Checking and Vice versa
+					// This is similar to withdraw but needs to add the deducted value to another account
 					System.out.println("\n\nTRANSFER");
 					System.out.print("\nSelect Account:\n\t1: Savings\n\t2: Checking\n Enter selection: ");
 					select = Integer.parseInt(input.readLine());
-					if (select == 1) {
-						
-					} else if (select == 2) {
-						
+					if (select == 1) { // From savings to checking
+						System.out.print("Current Savings Balance " + peso.format(savBal) + "\n"
+								+ "Enter the amount to be transfer: ");
+						double trans = Double.parseDouble(input.readLine());
+						double tempHolder = savBal;
+						tempHolder -= trans;
+						if(tempHolder > 0) {
+							savBal -= trans;
+							checkBal += trans;
+							System.out.println("\n\n New Savings Balance: " + peso.format(savBal));
+							System.out.println("New Checking Balance: " + peso.format(checkBal));
+						} else {
+							System.err.println("\n Insufficient Balance to Transfer");
+						}
+					} else if (select == 2) { // From checking to savings
+						System.out.print("Current Checking Balance " + peso.format(checkBal) + "\n"
+								+ "Enter the amount to be transfer: ");
+						double trans = Double.parseDouble(input.readLine());
+						double tempHolder = checkBal;
+						tempHolder -= trans;
+						if(tempHolder > 0) {
+							checkBal -= trans;
+							savBal += trans;
+							System.out.println("\n\n\tNew Savings Balance: " + peso.format(checkBal));
+							System.out.println("\tNew Checking Balance: " + peso.format(savBal));
+						} else {
+							System.err.println("\n Insufficient Balance to Transfer");
+						}
 					} else {
 						System.err.println("\nChoose only based on the selection and its corresponding number");
 					}
