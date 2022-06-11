@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-/bin/
-=======
 #Temp removals
 /.metadata/
 .gitignore
@@ -22,4 +19,3 @@ local.properties
 *.jar
 *.war
 *.ear
->>>>>>> branch 'dev' of https://github.com/JohnRazonado/ATMConsole.git
