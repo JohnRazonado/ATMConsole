@@ -37,7 +37,7 @@ public class atmSystem {
 		 
 		 double checkBal = (int)Math.floor(Math.random()*(max-min+1)+min);	// Checking account balance
 		 double checkRate = 0.00; 	// Checking interest rate
-		 // The interest rate is based on the common interest rate of Philippine Banks
+		 // The interest rate is based on the common intersest rate of Philippine Banks
 		 
 		 
 		 BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
