@@ -21,6 +21,7 @@ public class atmSystem {
 		//	peso.setCurrency(Currency.getInstance("PHP"));
 		 
 		while (transact) {
+			System.out.println(colorConsole.ORANGE +"-------------------------------------------");
 			System.out.print(colorConsole.YELLOW + "ATM Main Menu:\n"
 					+ "\t1: Withdraw Money \n"
 					+ "\t2: Deposit Money \n"
@@ -32,6 +33,7 @@ public class atmSystem {
 			 			 
 			switch (select) {
 				case 1: 
+					System.out.println(colorConsole.ORANGE +"-------------------------------------------");
 					System.out.println(colorConsole.RED + "\nOPERATION: WITHDRAW");
 					withdraw(savBal, checkBal);
 					break;
@@ -54,6 +56,7 @@ public class atmSystem {
 					break;
 				}		
 				default:
+					System.out.println(colorConsole.ORANGE +"-------------------------------------------");
 					System.err.println("Please Choose only what's on the menu\nusing its corresponding number.\n\n");
 			 }
 			
@@ -66,16 +69,18 @@ public class atmSystem {
 		
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 		
-		System.out.print(colorConsole.FOREST_GREEN +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
+		System.out.println(colorConsole.ORANGE +"-------------------------------------------");
+		System.out.print(colorConsole.YELLOW +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
 		int select = Integer.parseInt(input.readLine());
 			if (select == 1) {
+				System.out.println(colorConsole.ORANGE +"-------------------------------------------");
 				System.out.print("\nCurrent Balance: " + "P" + (savBal) + "\n\n" + "Enter the amount to withdraw: ");
 				double withdraw = Double.parseDouble(input.readLine());
 				double tempHolder = savBal;
 				tempHolder -= withdraw;
 				if (tempHolder > 0) {
 					savBal -= withdraw;
-					System.out.println(colorConsole.DARK_BLUE +"\nNew Savings Balance: " + "P" + (savBal));
+					System.out.println(colorConsole.BANANA_YELLOW +"\nNew Savings Balance: " + "P" + (savBal));
 					System.out.println("");
 				} 
 				else {
@@ -90,14 +95,16 @@ public class atmSystem {
 				tempHolder -= withdraw;
 				if(tempHolder > 0) {
 					checkBal -= withdraw;
-					System.out.println(colorConsole.DARK_BLUE +"\nNew Checking Balance: " + "P" + (checkBal));
+					System.out.println(colorConsole.BANANA_YELLOW +"\nNew Checking Balance: " + "P" + (checkBal));
 					System.out.println("");
 				} 
 				else {
+					System.out.println(colorConsole.ORANGE +"-------------------------------------------");
 					System.err.println("\nInsufficient Balance");
 				}
 			} 
 			else {
+				System.out.println(colorConsole.ORANGE +"-------------------------------------------");
 				System.err.println("\nChoose only based on the selection and its corresponding number");
 			}
 		}
@@ -106,23 +113,27 @@ public class atmSystem {
 		
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 		
-		System.out.print(colorConsole.FOREST_GREEN +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
+		System.out.println(colorConsole.ORANGE +"-------------------------------------------");
+		System.out.print(colorConsole.YELLOW +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
 		int select = Integer.parseInt(input.readLine());
 			if (select == 1) {
+				System.out.println(colorConsole.ORANGE +"-------------------------------------------");
 				System.out.print("\nCurrent Balance: " + "P" + (savBal) + "\n\n" + "Enter the amount to deposit: ");
 				double deposit = Double.parseDouble(input.readLine());
 				savBal += deposit;
-				System.out.println(colorConsole.DARK_BLUE +"\nNew Savings Balance: " + "P" + (savBal));
+				System.out.println(colorConsole.BANANA_YELLOW +"\nNew Savings Balance: " + "P" + (savBal));
 				System.out.println("");
 			} 
 			else if (select == 2) {
+				System.out.println(colorConsole.ORANGE +"-------------------------------------------");
 				System.out.print("\nCurrent Balance: " + "P" + (checkBal) + "\n\n" + "Enter the amount to deposit: ");
 				double deposit = Double.parseDouble(input.readLine());
 				checkBal += deposit;
-				System.out.println(colorConsole.DARK_BLUE +"\nNew Checking Balance: " + "P" + (checkBal));
+				System.out.println(colorConsole.BANANA_YELLOW +"\nNew Checking Balance: " + "P" + (checkBal));
 				System.out.println("");
 			} 
 			else {
+				System.out.println(colorConsole.ORANGE +"-------------------------------------------");
 				System.err.println("\nChoose only based on the selection and its corresponding number");
 			}
 		}
@@ -131,9 +142,11 @@ public class atmSystem {
 		
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 		
-		System.out.print(colorConsole.FOREST_GREEN +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
+		System.out.println(colorConsole.ORANGE +"-------------------------------------------");
+		System.out.print(colorConsole.YELLOW +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
 		int select = Integer.parseInt(input.readLine());
 			if (select == 1) { 
+				System.out.println(colorConsole.ORANGE +"-------------------------------------------");
 				System.out.print("Current Savings Balance " + "P" + (savBal) + "\n\n" + "Enter the amount to be transfer: ");
 				double trans = Double.parseDouble(input.readLine());
 				double tempHolder = savBal;
@@ -141,11 +154,12 @@ public class atmSystem {
 				if(tempHolder > 0) {
 					savBal -= trans;
 					checkBal += trans;
-					System.out.println(colorConsole.DARK_BLUE +"\nNew Savings Balance: " + "P" + (savBal));
-					System.out.println(colorConsole.DARK_BLUE +"New Checking Balance: " + "P" + (checkBal));
+					System.out.println(colorConsole.BANANA_YELLOW +"\nNew Savings Balance: " + "P" + (savBal));
+					System.out.println(colorConsole.BANANA_YELLOW +"New Checking Balance: " + "P" + (checkBal));
 					System.out.println("");
 				} 
 				else {
+					System.out.println(colorConsole.ORANGE +"-------------------------------------------");
 					System.err.println("\nInsufficient Balance to Transfer");
 				}
 			} 
@@ -157,8 +171,8 @@ public class atmSystem {
 				if(tempHolder > 0) {
 					checkBal -= trans;
 					savBal += trans;
-					System.out.println(colorConsole.DARK_BLUE +"\nNew Savings Balance: " + "P" + (checkBal));
-					System.out.println(colorConsole.DARK_BLUE +"New Checking Balance: " + "P" + (savBal));
+					System.out.println(colorConsole.BANANA_YELLOW +"\nNew Savings Balance: " + "P" + (checkBal));
+					System.out.println(colorConsole.BANANA_YELLOW +"New Checking Balance: " + "P" + (savBal));
 					System.out.println("");
 				} 
 				else {
@@ -166,6 +180,7 @@ public class atmSystem {
 				}
 			} 
 			else {
+				System.out.println(colorConsole.ORANGE +"-------------------------------------------");
 				System.err.println("\nChoose only based on the selection and its corresponding number");
 			}	
 		}
@@ -173,22 +188,25 @@ public class atmSystem {
 	public static void balance(double savBal, double checkBal) throws IOException{
 		
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-		
-		System.out.print(colorConsole.FOREST_GREEN +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\t3: Both Account\n\nEnter selection: ");
+	
+		System.out.println(colorConsole.YELLOW +"-------------------------------------------");
+		System.out.print(colorConsole.YELLOW +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\t3: Both Account\n\nEnter selection: ");
 		int select = Integer.parseInt(input.readLine());
 		if (select == 1) {
-			System.out.println(colorConsole.DARK_BLUE +"\nCurrent Balance " + "P" + (savBal));
+			System.out.println(colorConsole.ORANGE +"-------------------------------------------");
+			System.out.println(colorConsole.BANANA_YELLOW +"\nCurrent Balance " + "P" + (savBal));
 			System.out.println("");
 		} 
 		else if (select == 2) {
-			System.out.println(colorConsole.DARK_BLUE +"\nCurrent Balance " + "P" + (checkBal));
+			System.out.println(colorConsole.BANANA_YELLOW +"\nCurrent Balance " + "P" + (checkBal));
 			System.out.println("");
 		} 
 		else if(select == 3) {
-			System.out.println(colorConsole.DARK_BLUE +"\nSavings Balance: " + "P" + (savBal) + "\nChecking Balance: " + "P" + (checkBal));
+			System.out.println(colorConsole.BANANA_YELLOW +"\nSavings Balance: " + "P" + (savBal) + "\nChecking Balance: " + "P" + (checkBal));
 			System.out.println("");
 		} 
 		else {
+			System.out.println(colorConsole.ORANGE +"-------------------------------------------");
 			System.err.println("\nChoose only based on the selection and its corresponding number");
 		}
 	}
