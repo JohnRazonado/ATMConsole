@@ -49,7 +49,7 @@ public class atmSystem {
 					break;
 				case 5: {
 					transact = false;
-					System.out.println("\n\nThank you for trusting on us\n\n EXITING...");
+					System.out.println(colorConsole.DARK_RED +"\n\nThank you for trusting on us\n\n EXITING...");
 					System.exit(0);
 					break;
 				}		
@@ -66,7 +66,7 @@ public class atmSystem {
 		
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 		
-		System.out.print("\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
+		System.out.print(colorConsole.FOREST_GREEN +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
 		int select = Integer.parseInt(input.readLine());
 			if (select == 1) {
 				System.out.print("\nCurrent Balance: " + "P" + (savBal) + "\n\n" + "Enter the amount to withdraw: ");
@@ -75,7 +75,7 @@ public class atmSystem {
 				tempHolder -= withdraw;
 				if (tempHolder > 0) {
 					savBal -= withdraw;
-					System.out.println("\nNew Savings Balance: " + "P" + (savBal));
+					System.out.println(colorConsole.DARK_BLUE +"\nNew Savings Balance: " + "P" + (savBal));
 					System.out.println("");
 				} 
 				else {
@@ -90,7 +90,7 @@ public class atmSystem {
 				tempHolder -= withdraw;
 				if(tempHolder > 0) {
 					checkBal -= withdraw;
-					System.out.println("\nNew Checking Balance: " + "P" + (checkBal));
+					System.out.println(colorConsole.DARK_BLUE +"\nNew Checking Balance: " + "P" + (checkBal));
 					System.out.println("");
 				} 
 				else {
@@ -106,20 +106,20 @@ public class atmSystem {
 		
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 		
-		System.out.print("\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
+		System.out.print(colorConsole.FOREST_GREEN +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
 		int select = Integer.parseInt(input.readLine());
 			if (select == 1) {
 				System.out.print("\nCurrent Balance: " + "P" + (savBal) + "\n\n" + "Enter the amount to deposit: ");
 				double deposit = Double.parseDouble(input.readLine());
 				savBal += deposit;
-				System.out.println("\nNew Savings Balance: " + "P" + (savBal));
+				System.out.println(colorConsole.DARK_BLUE +"\nNew Savings Balance: " + "P" + (savBal));
 				System.out.println("");
 			} 
 			else if (select == 2) {
 				System.out.print("\nCurrent Balance: " + "P" + (checkBal) + "\n\n" + "Enter the amount to deposit: ");
 				double deposit = Double.parseDouble(input.readLine());
 				checkBal += deposit;
-				System.out.println("\nNew Checking Balance: " + "P" + (checkBal));
+				System.out.println(colorConsole.DARK_BLUE +"\nNew Checking Balance: " + "P" + (checkBal));
 				System.out.println("");
 			} 
 			else {
@@ -131,7 +131,7 @@ public class atmSystem {
 		
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 		
-		System.out.print("\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
+		System.out.print(colorConsole.FOREST_GREEN +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
 		int select = Integer.parseInt(input.readLine());
 			if (select == 1) { 
 				System.out.print("Current Savings Balance " + "P" + (savBal) + "\n\n" + "Enter the amount to be transfer: ");
@@ -141,8 +141,8 @@ public class atmSystem {
 				if(tempHolder > 0) {
 					savBal -= trans;
 					checkBal += trans;
-					System.out.println("\nNew Savings Balance: " + "P" + (savBal));
-					System.out.println("New Checking Balance: " + "P" + (checkBal));
+					System.out.println(colorConsole.DARK_BLUE +"\nNew Savings Balance: " + "P" + (savBal));
+					System.out.println(colorConsole.DARK_BLUE +"New Checking Balance: " + "P" + (checkBal));
 					System.out.println("");
 				} 
 				else {
@@ -157,8 +157,8 @@ public class atmSystem {
 				if(tempHolder > 0) {
 					checkBal -= trans;
 					savBal += trans;
-					System.out.println("\nNew Savings Balance: " + "P" + (checkBal));
-					System.out.println("New Checking Balance: " + "P" + (savBal));
+					System.out.println(colorConsole.DARK_BLUE +"\nNew Savings Balance: " + "P" + (checkBal));
+					System.out.println(colorConsole.DARK_BLUE +"New Checking Balance: " + "P" + (savBal));
 					System.out.println("");
 				} 
 				else {
@@ -174,18 +174,18 @@ public class atmSystem {
 		
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 		
-		System.out.print("\nSelect Account:\n\t1: Savings\n\t2: Checking\n\t3: Both Account\n\nEnter selection: ");
+		System.out.print(colorConsole.FOREST_GREEN +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\t3: Both Account\n\nEnter selection: ");
 		int select = Integer.parseInt(input.readLine());
 		if (select == 1) {
-			System.out.println("\nCurrent Balance " + "P" + (savBal));
+			System.out.println(colorConsole.DARK_BLUE +"\nCurrent Balance " + "P" + (savBal));
 			System.out.println("");
 		} 
 		else if (select == 2) {
-			System.out.println("\nCurrent Balance " + "P" + (checkBal));
+			System.out.println(colorConsole.DARK_BLUE +"\nCurrent Balance " + "P" + (checkBal));
 			System.out.println("");
 		} 
 		else if(select == 3) {
-			System.out.println("\nSavings Balance: " + "P" + (savBal) + "\nChecking Balance: " + "P" + (checkBal));
+			System.out.println(colorConsole.DARK_BLUE +"\nSavings Balance: " + "P" + (savBal) + "\nChecking Balance: " + "P" + (checkBal));
 			System.out.println("");
 		} 
 		else {
