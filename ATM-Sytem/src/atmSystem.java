@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.DecimalFormat;
 import java.util.concurrent.TimeUnit;
 
 public class atmSystem {
@@ -11,8 +12,9 @@ public class atmSystem {
 		boolean transact = true; 
 		
 		int min=1, max=5000, select;
-		double savBal = (int)Math.floor(Math.random()*(max-min+1)+min);	 
-		double checkBal = (int)Math.floor(Math.random()*(max-min+1)+min);
+		double[] account = new double[2];
+		account[0] = (Math.round((Math.random()*(max-min+1)+min)*100.0)/100.0); //savBal
+		account[1] = (Math.round((Math.random()*(max-min+1)+min)*100.0)/100.0); //checkBal
 
 		//This part sets up the peso format 
 		// Still unstable
@@ -35,19 +37,19 @@ public class atmSystem {
 				case 1: 
 					System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
 					System.out.println(colorConsole.ROSY_PINK_BOLD_BRIGHT + "\nOPERATION: WITHDRAW");
-					withdraw(savBal, checkBal);
+					account = withdraw(account[0], account[1]);
 					break;
 				case 2: 
 					System.out.println(colorConsole.GREEN +"\nOPERATION: DEPOSIT");
-					deposit(savBal, checkBal);
+					account = deposit(account[0], account[1]);
 					break;
 				case 3:
 					System.out.println(colorConsole.ORANGE_BOLD_BRIGHT +"\nOPERATION: TRANSFER");
-					transfer(savBal, checkBal);
+					account =transfer(account[0], account[1]);
 					break;
 				case 4: 
 					System.out.println(colorConsole.TEAL_BOLD_BRIGHT +"\nOPERATION: CHECK BALANCE");
-					balance(savBal, checkBal);
+					account = balance(account[0], account[1]);
 					break;
 				case 5: {
 					transact = false;
@@ -65,7 +67,7 @@ public class atmSystem {
 		
 		}
 	
-	public static void withdraw(double savBal, double checkBal) throws IOException {
+	public static double[] withdraw(double savBal, double checkBal) throws IOException {
 		
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 		
@@ -108,9 +110,12 @@ public class atmSystem {
 				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
 				System.err.println("\nChoose only based on the selection and its corresponding number");
 			}
+			
+			double holder[] = {rounder(savBal), rounder(checkBal)};
+			return holder;
 		}
 	
-	public static void deposit(double savBal, double checkBal) throws IOException {
+	public static double[] deposit(double savBal, double checkBal) throws IOException {
 		
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 		
@@ -136,9 +141,11 @@ public class atmSystem {
 				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
 				System.err.println("\nChoose only based on the selection and its corresponding number");
 			}
+			double holder[] = {rounder(savBal), rounder(checkBal)};
+			return holder;
 		}
 	
-	public static void transfer(double savBal, double checkBal) throws IOException {
+	public static double[] transfer(double savBal, double checkBal) throws IOException {
 		
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 		
@@ -162,6 +169,7 @@ public class atmSystem {
 					System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
 					System.err.println("\nInsufficient Balance to Transfer");
 				}
+				
 			} 
 			else if (select == 2) { 
 				System.out.print(colorConsole.BANANA_YELLOW_BOLD_BRIGHT +"Current Checking Balance " + "P" + (checkBal) + "\n\n" + "Enter the amount to be transfer: ");
@@ -183,9 +191,11 @@ public class atmSystem {
 				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
 				System.err.println("\nChoose only based on the selection and its corresponding number");
 			}	
+			double holder[] = {rounder(savBal), rounder(checkBal)};
+			return holder;
 		}
 	
-	public static void balance(double savBal, double checkBal) throws IOException{
+	public static double[] balance(double savBal, double checkBal) throws IOException{
 		
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	
@@ -209,7 +219,15 @@ public class atmSystem {
 			System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
 			System.err.println("\nChoose only based on the selection and its corresponding number");
 		}
+		
+		double holder[] = {rounder(savBal), rounder(checkBal)};
+		return holder;
 	}
+	
+	public static double rounder(double number) { //easy round caller
+		
+		return Double.valueOf(new DecimalFormat("#.##").format(number));
+}
 	
 // use this to color the texts
 class colorConsole {
