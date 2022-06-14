@@ -5,7 +5,6 @@ import java.text.DecimalFormat;
 import java.util.concurrent.TimeUnit;
 
 public class atmSystem {
-	
 	public static void main(String[] args) throws IOException, InterruptedException{	 	
 		
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
@@ -70,7 +69,6 @@ public class atmSystem {
 	public static double[] withdraw(double savBal, double checkBal) throws IOException {
 		int select = 0;
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-		
 		System.out.print(colorConsole.ROSY_PINK_BOLD_BRIGHT +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
 		try {
 			select = Integer.parseInt(input.readLine());
@@ -81,29 +79,27 @@ public class atmSystem {
 		}
 			if (select == 1) {
 				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-				System.out.print(colorConsole.LIGHT_PURPLE_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (savBal) + "\n\n" + "Enter the amount to withdraw: ");
+				System.out.print(colorConsole.LIGHT_PURPLE_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (formatter(savBal)) + "\n\n" + "Enter the amount to withdraw: ");
 				double withdraw = Double.parseDouble(input.readLine());
 				double tempHolder = savBal;
 				tempHolder -= withdraw;
 				if (tempHolder > 0) {
 					savBal -= withdraw;
-					System.out.println(colorConsole.LIGHT_PURPLE_BOLD_BRIGHT +"\nNew Savings Balance: " + "P" + (savBal));
-					System.out.println("");
+					System.out.println(colorConsole.LIGHT_PURPLE_BOLD_BRIGHT +"\nNew Savings Balance: " + "P" + (formatter(savBal)) + "\n");					
 				} 
 				else {
 					System.err.println("\nInsufficient Balance");
 				}	
 			} 
-			
 			else if (select == 2) { 
 				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-				System.out.print(colorConsole.LIGHT_PINK_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (checkBal) + "\n\n" + "Enter the amount to withdraw: ");
+				System.out.print(colorConsole.LIGHT_PINK_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (formatter(checkBal)) + "\n\n" + "Enter the amount to withdraw: ");
 				double withdraw = Double.parseDouble(input.readLine());
 				double tempHolder = checkBal;
 				tempHolder -= withdraw;
 				if(tempHolder > 0) {
 					checkBal -= withdraw;
-					System.out.println(colorConsole.LIGHT_PINK_BOLD_BRIGHT +"\nNew Checking Balance: " + "P" + (checkBal));
+					System.out.println(colorConsole.LIGHT_PINK_BOLD_BRIGHT +"\nNew Checking Balance: " + "P" + (formatter(checkBal)));
 					System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
 					System.out.println("");
 				} 
@@ -116,7 +112,6 @@ public class atmSystem {
 				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
 				System.err.println("\nChoose only based on the selection and its corresponding number");
 			}
-			
 			double holder[] = {formatter(savBal), formatter(checkBal)};
 			return holder;
 		}
@@ -135,18 +130,18 @@ public class atmSystem {
 		}
 			if (select == 1) {
 				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-				System.out.print(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (savBal) + "\n\n" + "Enter the amount to deposit: ");
+				System.out.print(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (formatter(savBal)) + "\n\n" + "Enter the amount to deposit: ");
 				double deposit = Double.parseDouble(input.readLine());
 				savBal += deposit;
-				System.out.println(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nNew Savings Balance: " + "P" + (savBal));
+				System.out.println(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nNew Savings Balance: " + "P" + (formatter(savBal)));
 				System.out.println("");
 			} 
 			else if (select == 2) {
 				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-				System.out.print(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (checkBal) + "\n\n" + "Enter the amount to deposit: ");
+				System.out.print(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (formatter(checkBal)) + "\n\n" + "Enter the amount to deposit: ");
 				double deposit = Double.parseDouble(input.readLine());
 				checkBal += deposit;
-				System.out.println(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nNew Checking Balance: " + "P" + (checkBal));
+				System.out.println(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nNew Checking Balance: " + "P" + (formatter(checkBal)));
 				System.out.println("");
 			} 
 			else {
@@ -158,7 +153,6 @@ public class atmSystem {
 		}
 	
 	public static double[] transfer(double savBal, double checkBal) throws IOException {
-		
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 		int select = 0;
 		System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
@@ -170,36 +164,35 @@ public class atmSystem {
 		} catch (IOException e) {
 			System.out.println("IO Error");
 		}
-		
 			if (select == 1) { 
 				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-				System.out.print(colorConsole.YELLOW_BOLD_BRIGHT +"Current Savings Balance " + "P" + (savBal) + "\n\n" + "Enter the amount to be transfer: ");
+				System.out.print(colorConsole.YELLOW_BOLD_BRIGHT +"Current Savings Balance " + "P" + (formatter(savBal)) + "\n\n" + "Enter the amount to be transfer: ");
 				double trans = Double.parseDouble(input.readLine());
 				double tempHolder = savBal;
 				tempHolder -= trans;
 				if(tempHolder > 0) {
 					savBal -= trans;
 					checkBal += trans;
-					System.out.println(colorConsole.YELLOW_BOLD_BRIGHT +"\nNew Savings Balance: " + "P" + (savBal));
-					System.out.println(colorConsole.YELLOW_BOLD_BRIGHT +"New Checking Balance: " + "P" + (checkBal));
+					System.out.println(colorConsole.YELLOW_BOLD_BRIGHT +"\nNew Savings Balance: " + "P" + (formatter(savBal)));
+					System.out.println(colorConsole.YELLOW_BOLD_BRIGHT +"New Checking Balance: " + "P" + (formatter(checkBal)));
 					System.out.println("");
 				} 
 				else {
 					System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
 					System.err.println("\nInsufficient Balance to Transfer");
 				}
-				
 			} 
+			
 			else if (select == 2) { 
-				System.out.print(colorConsole.BANANA_YELLOW_BOLD_BRIGHT +"Current Checking Balance " + "P" + (checkBal) + "\n\n" + "Enter the amount to be transfer: ");
+				System.out.print(colorConsole.BANANA_YELLOW_BOLD_BRIGHT +"Current Checking Balance " + "P" + (formatter(checkBal)) + "\n\n" + "Enter the amount to be transfer: ");
 				double trans = Double.parseDouble(input.readLine());
 				double tempHolder = checkBal;
 				tempHolder -= trans;
 				if(tempHolder > 0) {
 					checkBal -= trans;
 					savBal += trans;
-					System.out.println(colorConsole.BANANA_YELLOW_BOLD_BRIGHT +"\nNew Savings Balance: " + "P" + (checkBal));
-					System.out.println(colorConsole.BANANA_YELLOW_BOLD_BRIGHT +"\nNew Checking Balance: " + "P" + (savBal));
+					System.out.println(colorConsole.BANANA_YELLOW_BOLD_BRIGHT +"\nNew Savings Balance: " + "P" + (formatter(checkBal)));
+					System.out.println(colorConsole.BANANA_YELLOW_BOLD_BRIGHT +"\nNew Checking Balance: " + "P" + (formatter(savBal)));
 					System.out.println("");
 				} 
 				else {
@@ -215,7 +208,6 @@ public class atmSystem {
 		}
 	
 	public static double[] balance(double savBal, double checkBal) throws IOException{
-		
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 		int select = 0;
 		System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
@@ -249,11 +241,9 @@ public class atmSystem {
 		double holder[] = {formatter(savBal), formatter(checkBal)};
 		return holder;
 	}
-	
 	public static double formatter(double number) { //more like formatter for the two decimal point
-		
 		return Double.valueOf(new DecimalFormat("#.##").format(number));
-}
+	}
 	
 // use this to color the texts
 class colorConsole {
@@ -278,7 +268,6 @@ class colorConsole {
     public static final String BANANA_YELLOW = "\033[38;2;240;238;113m"; //BANANA YELLOW
     public static final String DARK_RED = "\033[38;2;145;40;16m"; //DARK RED
     public static final String LIGHT_PINK = "\033[38;2;255;153;240m"; //LIGHT PINK
-    
     public static final String BLACK_BOLD_BRIGHT = "\033[0;30m";   // BLACK
     public static final String RED_BOLD_BRIGHT = "\033[0;31m";     // RED
     public static final String GREEN_BOLD_BRIGHT = "\033[0;32m";   // GREEN
