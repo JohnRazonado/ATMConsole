@@ -5,8 +5,7 @@ import java.io.InputStreamReader;
 public class TextSelect{
     BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
     Operation calc = new Operation();
-    // Operation accounts = new Operation();
-
+    
     public void select(String transaction, Account acc) throws IOException{
         System.out.print(colorConsole.GREEN_BOLD_BRIGHT +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
 		int select = 0;
@@ -69,31 +68,29 @@ public class TextSelect{
         return balance;
     }
     public void transact (String account, String transaction, double mainBalance, double transBalance, Account acc) throws NumberFormatException, IOException{
-    
-    String anotherAccount = "";
-    System.out.print(colorConsole.LIGHT_PINK_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (calc.formatter(mainBalance)) + "\n\n" + "Enter the amount to "+ transaction + ": ");
-    double amount = Double.parseDouble(input.readLine());
-    double tempHolder = mainBalance;
-    tempHolder -= amount;
-    if (tempHolder > 0) {
-        mainBalance = calc.add(mainBalance, -amount);
-        transBalance = calc.add(transBalance, amount);
-        if (account.equals("Savings")){
-            anotherAccount = "Checking";
-            acc.setSaving(mainBalance);
-            acc.setChecking(transBalance);
+        String anotherAccount = "";
+        System.out.print(colorConsole.LIGHT_PINK_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (calc.formatter(mainBalance)) + "\n\n" + "Enter the amount to "+ transaction + ": ");
+        double amount = Double.parseDouble(input.readLine());
+        double tempHolder = mainBalance;
+        tempHolder -= amount;
+        if (tempHolder > 0) {
+            mainBalance = calc.add(mainBalance, -amount);
+            transBalance = calc.add(transBalance, amount);
+            if (account.equals("Savings")){
+                anotherAccount = "Checking";
+                acc.setSaving(mainBalance);
+                acc.setChecking(transBalance);
+            } else {
+                anotherAccount = "Savings";
+                acc.setChecking(mainBalance);
+                acc.setSaving(transBalance);
+            }
+            balance(account, mainBalance);
+            balance(anotherAccount, transBalance);
         } else {
-            anotherAccount = "Savings";
-            acc.setChecking(mainBalance);
-            acc.setSaving(transBalance);
-        }
-        balance(account, mainBalance);
-        balance(anotherAccount, transBalance);
-    } else {
-        System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-		System.err.println("\nInsufficient Balance to Transfer");
-    }
-    
+            System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
+            System.err.println("\nInsufficient Balance to Transfer");
+        }    
     }
     public void balance (String account,double balance){
         System.out.println(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nNew "+ account +" Balance: " + "P" + (calc.formatter(balance)));
