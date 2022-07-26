@@ -49,6 +49,7 @@ public class atmSystem {
 				case 3:
 					System.out.println(colorConsole.ORANGE_BOLD_BRIGHT +"\nOPERATION: TRANSFER");
 					// account =transfer(account[0], account[1]);
+					selection.select("transfer", account);
 					break;
 				case 4: 
 					System.out.println(colorConsole.TEAL_BOLD_BRIGHT +"\nOPERATION: CHECK BALANCE");
