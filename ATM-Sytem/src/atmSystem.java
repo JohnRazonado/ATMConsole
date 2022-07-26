@@ -53,6 +53,7 @@ public class atmSystem {
 				case 4: 
 					System.out.println(colorConsole.TEAL_BOLD_BRIGHT +"\nOPERATION: CHECK BALANCE");
 					// account = balance(account[0], account[1]);
+					selection.select("balance", account);
 					break;
 				case 5: {
 					transact = false;
@@ -211,40 +212,40 @@ public class atmSystem {
 			return holder;
 		}
 	
-	public static double[] balance(double savBal, double checkBal) throws IOException{
-		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-		int select = 0;
-		System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-		System.out.print(colorConsole.TEAL_BOLD_BRIGHT +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\t3: Both Account\n\nEnter selection: ");
-		try {
-			select = Integer.parseInt(input.readLine());
-		} catch (NumberFormatException e) {
-			System.out.println("Numberformat Error: Put numbers only");
-		} catch (IOException e) {
-			System.out.println("IO Error");
-		}
+	// public static double[] balance(double savBal, double checkBal) throws IOException{
+	// 	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+	// 	int select = 0;
+	// 	System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
+	// 	System.out.print(colorConsole.TEAL_BOLD_BRIGHT +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\t3: Both Account\n\nEnter selection: ");
+	// 	try {
+	// 		select = Integer.parseInt(input.readLine());
+	// 	} catch (NumberFormatException e) {
+	// 		System.out.println("Numberformat Error: Put numbers only");
+	// 	} catch (IOException e) {
+	// 		System.out.println("IO Error");
+	// 	}
 		
-		if (select == 1) {
-			System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-			System.out.println(colorConsole.LIGHT_BLUE_BOLD_BRIGHT +"\nCurrent Balance " + "P" + (savBal));
-			System.out.println("");
-		} 
-		else if (select == 2) {
-			System.out.println(colorConsole.LIGHT_BLUE_BOLD_BRIGHT +"\nCurrent Balance " + "P" + (checkBal));
-			System.out.println("");
-		} 
-		else if(select == 3) {
-			System.out.println(colorConsole.LIGHT_BLUE_BOLD_BRIGHT +"\nSavings Balance: " + "P" + (savBal) + "\nChecking Balance: " + "P" + (checkBal));
-			System.out.println("");
-		} 
-		else {
-			System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-			System.err.println("\nChoose only based on the selection and its corresponding number");
-		}
+	// 	if (select == 1) {
+	// 		System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
+	// 		System.out.println(colorConsole.LIGHT_BLUE_BOLD_BRIGHT +"\nCurrent Balance " + "P" + (savBal));
+	// 		System.out.println("");
+	// 	} 
+	// 	else if (select == 2) {
+	// 		System.out.println(colorConsole.LIGHT_BLUE_BOLD_BRIGHT +"\nCurrent Balance " + "P" + (checkBal));
+	// 		System.out.println("");
+	// 	} 
+	// 	else if(select == 3) {
+	// 		System.out.println(colorConsole.LIGHT_BLUE_BOLD_BRIGHT +"\nSavings Balance: " + "P" + (savBal) + "\nChecking Balance: " + "P" + (checkBal));
+	// 		System.out.println("");
+	// 	} 
+	// 	else {
+	// 		System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
+	// 		System.err.println("\nChoose only based on the selection and its corresponding number");
+	// 	}
 		
-		double holder[] = {formatter(savBal), formatter(checkBal)};
-		return holder;
-	}
+	// 	double holder[] = {formatter(savBal), formatter(checkBal)};
+	// 	return holder;
+	// }
 	public static double formatter(double number) { //more like formatter for the two decimal point
 		return Double.valueOf(new DecimalFormat("#.##").format(number));
 	}

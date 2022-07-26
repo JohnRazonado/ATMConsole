@@ -37,10 +37,12 @@ public class TextSelect{
         // account = Savings or Checking
         // transaction = deposit or withdraw
         
-
+        double amount = 0;
         System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-			System.out.print(colorConsole.LIGHT_PINK_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (calc.formatter(balance)) + "\n\n" + "Enter the amount to "+ transaction + ": ");
-        double amount = Double.parseDouble(input.readLine());
+		if (!transaction.equals("balance")){
+        System.out.print(colorConsole.LIGHT_PINK_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (calc.formatter(balance)) + "\n\n" + "Enter the amount to "+ transaction + ": ");
+        amount = Double.parseDouble(input.readLine());
+        }
         if (transaction.equals("withdraw")) {
             double tempHolder = balance;
             tempHolder = calc.add(tempHolder, -amount);
