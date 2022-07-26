@@ -9,11 +9,13 @@ public class atmSystem {
 		
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 		boolean transact = true; 
-		
 		int min=1, max=5000, select=0;
-		double[] account = new double[2];
-		account[0] = (Math.round((Math.random()*(max-min+1)+min)*100.0)/100.0); //savBal
-		account[1] = (Math.round((Math.random()*(max-min+1)+min)*100.0)/100.0); //checkBal
+		Account account = new Account((Math.round((Math.random()*(max-min+1)+min)*100.0)/100.0), (Math.round((Math.random()*(max-min+1)+min)*100.0)/100.0));
+		TextSelect selection = new TextSelect();
+		
+		// double[] account = new double[2];
+		// account[0] = (Math.round((Math.random()*(max-min+1)+min)*100.0)/100.0); //savBal
+		// account[1] = (Math.round((Math.random()*(max-min+1)+min)*100.0)/100.0); //checkBal
 
 		while (transact) {
 			System.out.println(colorConsole.WHITE_BOLD_BRIGHT  +"-------------------------------------------");
@@ -36,19 +38,21 @@ public class atmSystem {
 				case 1: 
 					System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
 					System.out.println(colorConsole.ROSY_PINK_BOLD_BRIGHT + "\nOPERATION: WITHDRAW");
-					account = withdraw(account[0], account[1]);
+					// account = select(account[0], account[1]);
+					selection.select("withdraw", account);
 					break;
 				case 2: 
 					System.out.println(colorConsole.GREEN +"\nOPERATION: DEPOSIT");
-					account = deposit(account[0], account[1]);
+					// account = deposit(account[0], account[1]);
+					selection.select("deposit", account);
 					break;
 				case 3:
 					System.out.println(colorConsole.ORANGE_BOLD_BRIGHT +"\nOPERATION: TRANSFER");
-					account =transfer(account[0], account[1]);
+					// account =transfer(account[0], account[1]);
 					break;
 				case 4: 
 					System.out.println(colorConsole.TEAL_BOLD_BRIGHT +"\nOPERATION: CHECK BALANCE");
-					account = balance(account[0], account[1]);
+					// account = balance(account[0], account[1]);
 					break;
 				case 5: {
 					transact = false;
@@ -66,91 +70,91 @@ public class atmSystem {
 		
 		}
 	
-	public static double[] withdraw(double savBal, double checkBal) throws IOException {
-		int select = 0;
-		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print(colorConsole.ROSY_PINK_BOLD_BRIGHT +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
-		try {
-			select = Integer.parseInt(input.readLine());
-		} catch (NumberFormatException e) {
-			System.out.println("Numberformat Error: Put numbers only");
-		} catch (IOException e) {
-			System.out.println("IO Error");
-		}
-			if (select == 1) {
-				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-				System.out.print(colorConsole.LIGHT_PURPLE_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (formatter(savBal)) + "\n\n" + "Enter the amount to withdraw: ");
-				double withdraw = Double.parseDouble(input.readLine());
-				double tempHolder = savBal;
-				tempHolder -= withdraw;
-				if (tempHolder > 0) {
-					savBal -= withdraw;
-					System.out.println(colorConsole.LIGHT_PURPLE_BOLD_BRIGHT +"\nNew Savings Balance: " + "P" + (formatter(savBal)) + "\n");					
-				} 
-				else {
-					System.err.println("\nInsufficient Balance");
-				}	
-			} 
-			else if (select == 2) { 
-				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-				System.out.print(colorConsole.LIGHT_PINK_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (formatter(checkBal)) + "\n\n" + "Enter the amount to withdraw: ");
-				double withdraw = Double.parseDouble(input.readLine());
-				double tempHolder = checkBal;
-				tempHolder -= withdraw;
-				if(tempHolder > 0) {
-					checkBal -= withdraw;
-					System.out.println(colorConsole.LIGHT_PINK_BOLD_BRIGHT +"\nNew Checking Balance: " + "P" + (formatter(checkBal)));
-					System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-					System.out.println("");
-				} 
-				else {
-					System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-					System.err.println("\nInsufficient Balance");
-				}
-			} 
-			else {
-				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-				System.err.println("\nChoose only based on the selection and its corresponding number");
-			}
-			double holder[] = {formatter(savBal), formatter(checkBal)};
-			return holder;
-		}
-	
-	public static double[] deposit(double savBal, double checkBal) throws IOException {
-		int select = 0;
-		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+	//public static double[] withdraw(double savBal, double checkBal) throws IOException {
+	// 	int select = 0;
+	// 	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+	// 	System.out.print(colorConsole.ROSY_PINK_BOLD_BRIGHT +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
+	// 	try {
+	// 		select = Integer.parseInt(input.readLine());
+	// 	} catch (NumberFormatException e) {
+	// 		System.out.println("Numberformat Error: Put numbers only");
+	// 	} catch (IOException e) {
+	// 		System.out.println("IO Error");
+	// 	}
+	// 	if (select == 1) {
+	// 		System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
+	// 		System.out.print(colorConsole.LIGHT_PURPLE_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (formatter(savBal)) + "\n\n" + "Enter the amount to withdraw: ");
+	// 		double withdraw = Double.parseDouble(input.readLine());
+	// 		double tempHolder = savBal;
+	// 		tempHolder -= withdraw;
+	// 		if (tempHolder > 0) {
+	// 			savBal -= withdraw;
+	// 			System.out.println(colorConsole.LIGHT_PURPLE_BOLD_BRIGHT +"\nNew Savings Balance: " + "P" + (formatter(savBal)) + "\n");					
+	// 		} 
+	// 		else {
+	// 			System.err.println("\nInsufficient Balance");
+	// 		}	
+	// 	} 
+	// 	else if (select == 2) {
+	// 		System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
+	// 		System.out.print(colorConsole.LIGHT_PINK_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (formatter(checkBal)) + "\n\n" + "Enter the amount to withdraw: ");
+	// 		double withdraw = Double.parseDouble(input.readLine());
+	// 		double tempHolder = checkBal;
+	// 		tempHolder -= withdraw;
+	// 		if(tempHolder > 0) {
+	// 			checkBal -= withdraw;
+	// 			System.out.println(colorConsole.LIGHT_PINK_BOLD_BRIGHT +"\nNew Checking Balance: " + "P" + (formatter(checkBal)));
+	// 			System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
+	// 			System.out.println("");
+	// 		} 
+	// 		else {
+	// 			System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
+	// 			System.err.println("\nInsufficient Balance");
+	// 		}
+	// 	} 
+	// 	else {
+	// 		System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
+	// 		System.err.println("\nChoose only based on the selection and its corresponding number");
+	// 	}
+	// 	double holder[] = {formatter(savBal), formatter(checkBal)};
+	// 	return holder;
+	// }
+	 
+	// public static double[] deposit(double savBal, double checkBal) throws IOException {
+	// 	int select = 0;
+	// 	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 		
-		System.out.print(colorConsole.GREEN_BOLD_BRIGHT +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
-		try {
-			select = Integer.parseInt(input.readLine());
-		} catch (NumberFormatException e) {
-			System.out.println("Numberformat Error: Put numbers only");
-		} catch (IOException e) {
-			System.out.println("IO Error");
-		}
-			if (select == 1) {
-				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-				System.out.print(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (formatter(savBal)) + "\n\n" + "Enter the amount to deposit: ");
-				double deposit = Double.parseDouble(input.readLine());
-				savBal += deposit;
-				System.out.println(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nNew Savings Balance: " + "P" + (formatter(savBal)));
-				System.out.println("");
-			} 
-			else if (select == 2) {
-				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-				System.out.print(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (formatter(checkBal)) + "\n\n" + "Enter the amount to deposit: ");
-				double deposit = Double.parseDouble(input.readLine());
-				checkBal += deposit;
-				System.out.println(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nNew Checking Balance: " + "P" + (formatter(checkBal)));
-				System.out.println("");
-			} 
-			else {
-				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-				System.err.println("\nChoose only based on the selection and its corresponding number");
-			}
-			double holder[] = {formatter(savBal), formatter(checkBal)};
-			return holder;
-		}
+	// 	System.out.print(colorConsole.GREEN_BOLD_BRIGHT +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
+	// 	try {
+	// 		select = Integer.parseInt(input.readLine());
+	// 	} catch (NumberFormatException e) {
+	// 		System.out.println("Numberformat Error: Put numbers only");
+	// 	} catch (IOException e) {
+	// 		System.out.println("IO Error");
+	// 	}
+	// 		if (select == 1) {
+	// 			System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
+	// 			System.out.print(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (formatter(savBal)) + "\n\n" + "Enter the amount to deposit: ");
+	// 			double deposit = Double.parseDouble(input.readLine());
+	// 			savBal += deposit;
+	// 			System.out.println(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nNew Savings Balance: " + "P" + (formatter(savBal)));
+	// 			System.out.println("");
+	// 		} 
+	// 		else if (select == 2) {
+	// 			System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
+	// 			System.out.print(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nCurrent Balance: " + "P" + (formatter(checkBal)) + "\n\n" + "Enter the amount to deposit: ");
+	// 			double deposit = Double.parseDouble(input.readLine());
+	// 			checkBal += deposit;
+	// 			System.out.println(colorConsole.LIGHT_GREEN_BOLD_BRIGHT +"\nNew Checking Balance: " + "P" + (formatter(checkBal)));
+	// 			System.out.println("");
+	// 		} 
+	// 		else {
+	// 			System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
+	// 			System.err.println("\nChoose only based on the selection and its corresponding number");
+	// 		}
+	// 		double holder[] = {formatter(savBal), formatter(checkBal)};
+	// 		return holder;
+	// 	}
 	
 	public static double[] transfer(double savBal, double checkBal) throws IOException {
 		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
