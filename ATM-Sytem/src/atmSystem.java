@@ -158,60 +158,60 @@ public class atmSystem {
 	// 		return holder;
 	// 	}
 	
-	public static double[] transfer(double savBal, double checkBal) throws IOException {
-		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-		int select = 0;
-		System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-		System.out.print(colorConsole.ORANGE_BOLD_BRIGHT +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
-		try {
-			select = Integer.parseInt(input.readLine());
-		} catch (NumberFormatException e) {
-			System.out.println("Numberformat Error: Put numbers only");
-		} catch (IOException e) {
-			System.out.println("IO Error");
-		}
-			if (select == 1) { 
-				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-				System.out.print(colorConsole.YELLOW_BOLD_BRIGHT +"Current Savings Balance " + "P" + (formatter(savBal)) + "\n\n" + "Enter the amount to be transfer: ");
-				double trans = Double.parseDouble(input.readLine());
-				double tempHolder = savBal;
-				tempHolder -= trans;
-				if(tempHolder > 0) {
-					savBal -= trans;
-					checkBal += trans;
-					System.out.println(colorConsole.YELLOW_BOLD_BRIGHT +"\nNew Savings Balance: " + "P" + (formatter(savBal)));
-					System.out.println(colorConsole.YELLOW_BOLD_BRIGHT +"New Checking Balance: " + "P" + (formatter(checkBal)));
-					System.out.println("");
-				} 
-				else {
-					System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-					System.err.println("\nInsufficient Balance to Transfer");
-				}
-			} 
+	// public static double[] transfer(double savBal, double checkBal) throws IOException {
+	// 	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+	// 	int select = 0;
+	// 	System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
+	// 	System.out.print(colorConsole.ORANGE_BOLD_BRIGHT +"\nSelect Account:\n\t1: Savings\n\t2: Checking\n\nEnter selection: ");
+	// 	try {
+	// 		select = Integer.parseInt(input.readLine());
+	// 	} catch (NumberFormatException e) {
+	// 		System.out.println("Numberformat Error: Put numbers only");
+	// 	} catch (IOException e) {
+	// 		System.out.println("IO Error");
+	// 	}
+	// 		if (select == 1) { 
+	// 			System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
+	// 			System.out.print(colorConsole.YELLOW_BOLD_BRIGHT +"Current Savings Balance " + "P" + (formatter(savBal)) + "\n\n" + "Enter the amount to be transfer: ");
+	// 			double trans = Double.parseDouble(input.readLine());
+	// 			double tempHolder = savBal;
+	// 			tempHolder -= trans;
+	// 			if(tempHolder > 0) {
+	// 				savBal -= trans;
+	// 				checkBal += trans;
+	// 				System.out.println(colorConsole.YELLOW_BOLD_BRIGHT +"\nNew Savings Balance: " + "P" + (formatter(savBal)));
+	// 				System.out.println(colorConsole.YELLOW_BOLD_BRIGHT +"New Checking Balance: " + "P" + (formatter(checkBal)));
+	// 				System.out.println("");
+	// 			} 
+	// 			else {
+	// 				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
+	// 				System.err.println("\nInsufficient Balance to Transfer");
+	// 			}
+	// 		} 
 			
-			else if (select == 2) { 
-				System.out.print(colorConsole.BANANA_YELLOW_BOLD_BRIGHT +"Current Checking Balance " + "P" + (formatter(checkBal)) + "\n\n" + "Enter the amount to be transfer: ");
-				double trans = Double.parseDouble(input.readLine());
-				double tempHolder = checkBal;
-				tempHolder -= trans;
-				if(tempHolder > 0) {
-					checkBal -= trans;
-					savBal += trans;
-					System.out.println(colorConsole.BANANA_YELLOW_BOLD_BRIGHT +"\nNew Savings Balance: " + "P" + (formatter(checkBal)));
-					System.out.println(colorConsole.BANANA_YELLOW_BOLD_BRIGHT +"\nNew Checking Balance: " + "P" + (formatter(savBal)));
-					System.out.println("");
-				} 
-				else {
-					System.err.println("\nInsufficient Balance to Transfer");
-				}
-			} 
-			else {
-				System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
-				System.err.println("\nChoose only based on the selection and its corresponding number");
-			}	
-			double holder[] = {formatter(savBal), formatter(checkBal)};
-			return holder;
-		}
+	// 		else if (select == 2) { 
+	// 			System.out.print(colorConsole.BANANA_YELLOW_BOLD_BRIGHT +"Current Checking Balance " + "P" + (formatter(checkBal)) + "\n\n" + "Enter the amount to be transfer: ");
+	// 			double trans = Double.parseDouble(input.readLine());
+	// 			double tempHolder = checkBal;
+	// 			tempHolder -= trans;
+	// 			if(tempHolder > 0) {
+	// 				checkBal -= trans;
+	// 				savBal += trans;
+	// 				System.out.println(colorConsole.BANANA_YELLOW_BOLD_BRIGHT +"\nNew Savings Balance: " + "P" + (formatter(checkBal)));
+	// 				System.out.println(colorConsole.BANANA_YELLOW_BOLD_BRIGHT +"\nNew Checking Balance: " + "P" + (formatter(savBal)));
+	// 				System.out.println("");
+	// 			} 
+	// 			else {
+	// 				System.err.println("\nInsufficient Balance to Transfer");
+	// 			}
+	// 		} 
+	// 		else {
+	// 			System.out.println(colorConsole.WHITE_BOLD_BRIGHT +"-------------------------------------------");
+	// 			System.err.println("\nChoose only based on the selection and its corresponding number");
+	// 		}	
+	// 		double holder[] = {formatter(savBal), formatter(checkBal)};
+	// 		return holder;
+	// 	}
 	
 	// public static double[] balance(double savBal, double checkBal) throws IOException{
 	// 	BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
@@ -247,9 +247,9 @@ public class atmSystem {
 	// 	double holder[] = {formatter(savBal), formatter(checkBal)};
 	// 	return holder;
 	// }
-	public static double formatter(double number) { //more like formatter for the two decimal point
-		return Double.valueOf(new DecimalFormat("#.##").format(number));
-	}
+	// public static double formatter(double number) { //more like formatter for the two decimal point
+	// 	return Double.valueOf(new DecimalFormat("#.##").format(number));
+	// }
 	
 }
 	
